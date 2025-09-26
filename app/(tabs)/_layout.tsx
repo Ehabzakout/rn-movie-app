@@ -1,35 +1,76 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import GradientIcon from "@/components/common/icon";
+import { Tabs } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+const TabsLayout = () => {
+	return (
+		<>
+			<StatusBar style="auto" />
+			<Tabs
+				screenOptions={{
+					headerShown: false,
+					tabBarShowLabel: false,
+					animation: "fade",
+					tabBarStyle: {
+						backgroundColor: "#242424",
+						height: 60,
+						width: "90%",
+						alignSelf: "center",
+						position: "relative",
+						bottom: 40,
+						borderRadius: 70,
+						justifyContent: "center",
+						alignItems: "center",
+						paddingTop: 10,
+						overflow: "hidden",
+					},
+					tabBarItemStyle: {
+						flex: 1,
+						alignItems: "center",
+						justifyContent: "center",
+					},
+				}}
+			>
+				<Tabs.Screen
+					name="index"
+					options={{
+						title: "Home",
+						tabBarIcon: ({ focused }) => (
+							<GradientIcon title="home" focused={focused} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="search"
+					options={{
+						title: "Search",
+						tabBarIcon: ({ focused }) => (
+							<GradientIcon title="search" focused={focused} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="save"
+					options={{
+						title: "Save",
+						tabBarIcon: ({ focused }) => (
+							<GradientIcon title="save" focused={focused} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name="profile"
+					options={{
+						title: "Profile",
+						tabBarIcon: ({ focused }) => (
+							<GradientIcon title="profile" focused={focused} />
+						),
+					}}
+				/>
+			</Tabs>
+		</>
+	);
+};
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
-}
+export default TabsLayout;
