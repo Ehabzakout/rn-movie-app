@@ -8,6 +8,7 @@ module.exports = {
 				primary: "#030014",
 				secondary: "#151312",
 				accent: "#AB8BFF",
+				placeholder: "#a8b5db",
 				light: {
 					100: "#D6C6FF",
 					200: "#ABB5DB",

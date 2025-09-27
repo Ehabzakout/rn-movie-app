@@ -6,12 +6,12 @@ import React from "react";
 const TabsLayout = () => {
 	return (
 		<>
-			<StatusBar style="auto" />
+			<StatusBar style="light" />
 			<Tabs
 				screenOptions={{
 					headerShown: false,
 					tabBarShowLabel: false,
-					animation: "fade",
+					animation: "shift",
 					tabBarStyle: {
 						backgroundColor: "#242424",
 						height: 60,
@@ -24,6 +24,7 @@ const TabsLayout = () => {
 						alignItems: "center",
 						paddingTop: 10,
 						overflow: "hidden",
+						borderTopWidth: 0,
 					},
 					tabBarItemStyle: {
 						flex: 1,
