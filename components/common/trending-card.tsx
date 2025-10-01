@@ -35,7 +35,9 @@ const TrendingCard = ({
 							/>
 						</MaskedView>
 					</View>
-					<Text className="text-zinc-50 font-bold mt-3">{item.title}</Text>
+					<Text className="text-zinc-50 font-bold mt-3" numberOfLines={1}>
+						{item.title}
+					</Text>
 				</View>
 			</TouchableHighlight>
 		</Link>

@@ -1,3 +1,4 @@
+import { API_HEADERS } from "@/constants/api-headers";
 import axios from "axios";
 
 export const getMovies = async ({
@@ -41,9 +42,13 @@ export async function searchMovie(query?: string) {
 
 export async function getMovieDetails(movieId: string) {
 	try {
-		const response = await axios.get<Movie>(
-			`${process.env.EXPO_PUBLIC_API}/movie/${movieId}`
+		const response = await axios.get<MovieDetails>(
+			`${process.env.EXPO_PUBLIC_API}/movie/${movieId}`,
+			{
+				headers: API_HEADERS,
+			}
 		);
+
 		if (response.status !== 200) throw new Error(response.statusText);
 		return response.data;
 	} catch (error) {
