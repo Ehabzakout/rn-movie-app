@@ -12,13 +12,15 @@ const TabsLayout = () => {
 					headerShown: false,
 					tabBarShowLabel: false,
 					animation: "shift",
+
 					tabBarStyle: {
-						backgroundColor: "#242424",
+						backgroundColor: "#030014",
 						height: 60,
 						width: "90%",
 						alignSelf: "center",
-						position: "relative",
-						bottom: 40,
+						position: "absolute",
+						marginHorizontal: 20,
+						bottom: 30,
 						borderRadius: 70,
 						justifyContent: "center",
 						alignItems: "center",
@@ -37,6 +39,7 @@ const TabsLayout = () => {
 					name="index"
 					options={{
 						title: "Home",
+
 						tabBarIcon: ({ focused }) => (
 							<GradientIcon title="home" focused={focused} />
 						),
