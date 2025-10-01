@@ -1,6 +1,7 @@
 import MovieCard from "@/components/common/movie-card";
 import SearchBar from "@/components/common/search-bar";
 import { searchMovie } from "@/service/api";
+import { updateSearchCount } from "@/service/app-write";
 import { useFetch } from "@/service/use-fetch";
 import React, { useEffect, useState } from "react";
 import {
@@ -20,19 +21,30 @@ const Search = () => {
 	);
 
 	useEffect(() => {
-		const func = () => {
+		const func = async () => {
 			if (!searchQuery) {
 				reset();
 				return;
 			}
-			fetchData();
+			await fetchData();
 		};
 
-		const debounce = setTimeout(func, 800);
+		const debounce = setTimeout(func, 1000);
 		return () => {
 			clearTimeout(debounce);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery]);
+
+	useEffect(() => {
+		const updateFn = setTimeout(async () => {
+			if (data?.results && data?.results.length > 0)
+				await updateSearchCount(searchQuery.trim(), data?.results[0]);
+		}, 1000);
+		return () => {
+			clearTimeout(updateFn);
+		};
+	}, [data]);
 	return (
 		<ImageBackground
 			source={require("../../assets/images/background.png")}

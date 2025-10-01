@@ -1,13 +1,16 @@
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 
 const MovieDetails = () => {
 	const { id } = useLocalSearchParams();
 	return (
-		<View>
-			<Text>details: {id}</Text>
-		</View>
+		<>
+			<StatusBar hidden={true} />
+			<View className="flex-1 bg-primary">
+				<Text className="text-zinc-50">details: {id}</Text>
+			</View>
+		</>
 	);
 };
 

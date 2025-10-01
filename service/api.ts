@@ -38,3 +38,17 @@ export async function searchMovie(query?: string) {
 
 	return response.data;
 }
+
+export async function getMovieDetails(movieId: string) {
+	try {
+		const response = await axios.get<Movie>(
+			`${process.env.EXPO_PUBLIC_API}/movie/${movieId}`
+		);
+		if (response.status !== 200) throw new Error(response.statusText);
+		return response.data;
+	} catch (error) {
+		throw new Error(
+			error instanceof Error ? error?.message : "Can't get movie"
+		);
+	}
+}

@@ -1,6 +1,9 @@
 import MovieCard from "@/components/common/movie-card";
 import SearchBar from "@/components/common/search-bar";
+import TrendingCard from "@/components/common/trending-card";
 import { getMovies } from "@/service/api";
+import { getTrendingMovies } from "@/service/app-write";
+import { useFetch } from "@/service/use-fetch";
 import usePaginatedList from "@/service/use-paginated-list";
 import { useRouter } from "expo-router";
 import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
@@ -16,6 +19,11 @@ import {
 } from "react-native";
 export default function Index() {
 	const router = useRouter();
+	const {
+		data: trending,
+		error: trendingError,
+		loading: trendingLoading,
+	} = useFetch(() => getTrendingMovies());
 	const {
 		payload,
 		fetchNextPage,
@@ -35,6 +43,7 @@ export default function Index() {
 		if (isCloseToBottom && !isFetchingNextPage && !isPending && !isLoading)
 			fetchNextPage();
 	};
+
 	return (
 		<ImageBackground
 			source={require("../../assets/images/background.png")}
@@ -61,6 +70,24 @@ export default function Index() {
 				/>
 				<View className="mt-10 mx-5">
 					<SearchBar onPress={() => router.push("/search")} />
+					{trending && trending?.length > 0 && (
+						<View>
+							<Text className="text-zinc-50 font-bold mt-5">
+								Trending Movies:
+							</Text>
+							<FlatList
+								data={trending}
+								keyExtractor={(movie) => String(movie.movie_id)}
+								renderItem={({ item, index }) => (
+									<TrendingCard index={index} {...item} />
+								)}
+								horizontal
+								showsHorizontalScrollIndicator={false}
+								contentContainerStyle={{ marginTop: 20 }}
+								ItemSeparatorComponent={() => <View className="w-6" />}
+							/>
+						</View>
+					)}
 					<Text className="text-zinc-50 font-semibold mt-5">Movie List:</Text>
 					{isLoading ? (
 						<ActivityIndicator
