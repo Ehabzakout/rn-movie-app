@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import "./global.css";
 export default function RootLayout() {
 	const queryClient = new QueryClient();
+
 	return (
 		<QueryClientProvider client={queryClient}>
 			<StatusBar style="auto" />

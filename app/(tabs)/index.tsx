@@ -2,9 +2,10 @@ import MovieCard from "@/components/common/movie-card";
 import SearchBar from "@/components/common/search-bar";
 import TrendingCard from "@/components/common/trending-card";
 import { getMovies } from "@/service/api";
-import { getTrendingMovies } from "@/service/app-write";
+import { getSavedMovies, getTrendingMovies } from "@/service/app-write";
 import { useFetch } from "@/service/use-fetch";
 import usePaginatedList from "@/service/use-paginated-list";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import {
@@ -19,11 +20,7 @@ import {
 } from "react-native";
 export default function Index() {
 	const router = useRouter();
-	const {
-		data: trending,
-		error: trendingError,
-		loading: trendingLoading,
-	} = useFetch(() => getTrendingMovies());
+	const { data: trending, fetchData } = useFetch(() => getTrendingMovies());
 	const {
 		payload,
 		fetchNextPage,
@@ -43,6 +40,10 @@ export default function Index() {
 		if (isCloseToBottom && !isFetchingNextPage && !isPending && !isLoading)
 			fetchNextPage();
 	};
+	const { data: savedDocument } = useQuery({
+		queryKey: ["savedDocument"],
+		queryFn: async () => await getSavedMovies(process.env.EXPO_PUBLIC_API_KEY!),
+	});
 
 	return (
 		<ImageBackground
@@ -56,6 +57,7 @@ export default function Index() {
 						refreshing={isLoading && payload.length !== 0}
 						onRefresh={() => {
 							refetch();
+							fetchData();
 						}}
 					/>
 				}
@@ -83,8 +85,8 @@ export default function Index() {
 								)}
 								horizontal
 								showsHorizontalScrollIndicator={false}
-								contentContainerStyle={{ marginTop: 20 }}
-								ItemSeparatorComponent={() => <View className="w-6" />}
+								contentContainerStyle={{ marginTop: 20, marginLeft: 10 }}
+								ItemSeparatorComponent={() => <View className="w-5" />}
 							/>
 						</View>
 					)}
@@ -103,13 +105,25 @@ export default function Index() {
 								className=" mt-7"
 								data={payload}
 								keyExtractor={(movie) => movie.id.toString()}
-								renderItem={({ item }) => <MovieCard {...item} />}
+								renderItem={({ item }) => {
+									const { id, title, poster_path, release_date, vote_average } =
+										item;
+									const cardProps: IMovieCard = {
+										id: id.toString(),
+										title,
+										poster_path,
+										release_date,
+										vote_average,
+									};
+									return <MovieCard {...cardProps} />;
+								}}
 								numColumns={3}
 								columnWrapperStyle={{
 									justifyContent: "flex-start",
 									gap: 20,
 									paddingRight: 5,
 									marginBottom: 10,
+									width: "30%",
 								}}
 								scrollEnabled={false}
 								scrollEventThrottle={16}

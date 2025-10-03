@@ -20,7 +20,7 @@ const TrendingCard = ({
 						className="w-32 h-48 rounded-md"
 						resizeMode="cover"
 					/>
-					<View className="absolute  bottom-8 left-0 z-10 w-12">
+					<View className="absolute  bottom-8 -left-4 z-10 w-12">
 						<MaskedView
 							maskElement={
 								<Text className="text-zinc-50 font-bold text-6xl">
@@ -29,7 +29,7 @@ const TrendingCard = ({
 							}
 						>
 							<Image
-								className="size-14"
+								className="size-14 w-16"
 								source={require("../../assets/images/rankingGradient.png")}
 								resizeMode="cover"
 							/>

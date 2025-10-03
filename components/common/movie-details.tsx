@@ -1,10 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
+import SaveMovie from "./save-movie";
 
 const MovieData = ({ ...props }: MovieDetails) => {
-	const router = useRouter();
 	const {
 		title,
 		release_date,
@@ -15,12 +14,23 @@ const MovieData = ({ ...props }: MovieDetails) => {
 		status,
 		genres,
 		production_countries,
+		poster_path,
+		id,
 	} = props;
 	return (
 		<View className="mt-6 mx-5">
-			<Text className="text-zinc-50 font-bold text-2xl capitalize">
-				{title}
-			</Text>
+			<View className="flex-row justify-between">
+				<Text className="text-zinc-50 font-bold text-2xl capitalize">
+					{title}
+				</Text>
+				<SaveMovie
+					poster_url={poster_path!}
+					vote_average={vote_average}
+					title={title}
+					release_date={release_date}
+					id={id.toString()}
+				/>
+			</View>
 			<View className="my-4 flex-row gap-2 items-center h-6">
 				<Text className="text-zinc-300">
 					{new Date(release_date).getFullYear()}
@@ -89,12 +99,6 @@ const MovieData = ({ ...props }: MovieDetails) => {
 					})}
 				</View>
 			</View>
-			<TouchableOpacity onPress={router.back}>
-				<View className="bg-purple-950  mx-5 rounded-full py-3 justify-center items-center gap-3  mt-10 flex-row">
-					<Ionicons name="arrow-back" size={20} color="#f2f2f2" />
-					<Text className=" text-zinc-50  font-bold text-xl ">Go Back</Text>
-				</View>
-			</TouchableOpacity>
 		</View>
 	);
 };

@@ -76,14 +76,21 @@ interface TrendingCardProps {
 	index: number;
 }
 
-declare type TIconProps = {
-	title: "home" | "search" | "save" | "profile";
-	focused: boolean;
-};
+interface TSavedDocument {
+	userId: string;
+	movieId: string;
+	title: string;
+	poster_url: string;
+	vote_average: number;
+	release_date: string;
+	deleteMovie?: boolean;
+	$id: string;
+}
 
-declare type TMoviesData = {
-	page: number;
-	results: Movie[];
-	total_pages: number;
-	total_results: number;
-};
+interface IMovieCard {
+	poster_path: string;
+	id: string;
+	title: string;
+	vote_average: number;
+	release_date: string;
+}

@@ -1,7 +1,8 @@
 import MovieData from "@/components/common/movie-details";
 import { getMovieDetails } from "@/service/api";
 import { useFetch } from "@/service/use-fetch";
-import { useLocalSearchParams } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
 import {
 	ActivityIndicator,
@@ -10,6 +11,7 @@ import {
 	ScrollView,
 	StatusBar,
 	Text,
+	TouchableOpacity,
 	View,
 } from "react-native";
 
@@ -18,6 +20,7 @@ const MovieDetails = () => {
 	const { data, loading, error, fetchData } = useFetch(() =>
 		getMovieDetails(id)
 	);
+	const router = useRouter();
 
 	return (
 		<>
@@ -44,7 +47,7 @@ const MovieDetails = () => {
 						/>
 					}
 					showsVerticalScrollIndicator={false}
-					contentContainerStyle={{ minHeight: "100%", paddingBottom: 40 }}
+					contentContainerStyle={{ minHeight: "100%", paddingBottom: 100 }}
 				>
 					<Image
 						source={{
@@ -57,6 +60,15 @@ const MovieDetails = () => {
 					/>
 					{data && <MovieData {...data} />}
 				</ScrollView>
+				<TouchableOpacity
+					onPress={router.back}
+					className="absolute bottom-10 w-full"
+				>
+					<View className="bg-purple-950  mx-5 rounded-full py-3 justify-center items-center gap-3  mt-10 flex-row">
+						<Ionicons name="arrow-back" size={20} color="#f2f2f2" />
+						<Text className=" text-zinc-50  font-bold text-xl ">Go Back</Text>
+					</View>
+				</TouchableOpacity>
 			</View>
 		</>
 	);
