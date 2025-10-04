@@ -4,10 +4,18 @@ This is a React Native mobile application built with Expo that allows users to d
 
 **Here’s how the UI reacts instantly when saving or unsaving a movie** 👇
 
-<img src="./assets/screens/screen-1.png" width='50%'>
-<img src="./assets/screens/screen-2.png" width='50%'>
-<img src="./assets/screens/screen-3.png" width='50%'>
-<img src="./assets/screens/screen-4.png" width='50%'>
+<img src="./assets/screens/screen-1.png"   width="200" 
+  height="400" 
+  style="object-fit: contain; border-radius: 8px;" >
+<img src="./assets/screens/screen-2.png"   width="200" 
+  height="400" 
+  style="object-fit: contain; border-radius: 8px;" >
+<img src="./assets/screens/screen-3.png"  width="200" 
+  height="400" 
+  style="object-fit: contain; border-radius: 8px;" >
+<img src="./assets/screens/screen-4.png"   width="200" 
+  height="400" 
+  style="object-fit: contain; border-radius: 8px;" >
 
 ✨ Features
 
