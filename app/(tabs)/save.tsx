@@ -1,4 +1,5 @@
 import MovieCard from "@/components/common/movie-card";
+import { Ionicons } from "@expo/vector-icons";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
@@ -16,9 +17,12 @@ const Save = () => {
 	return (
 		<View className="flex-1 justify-center  bg-primary pt-16">
 			{!data?.length ? (
-				<Text className="text-zinc-50 font-bold text-xl my-auto mx-auto">
-					No Saved Movies
-				</Text>
+				<View className="flex-1 justify-center items-center">
+					<Ionicons name="bookmark-outline" color="#f2f2f2" size={40} />
+					<Text className="text-zinc-50 font-bold text-xl mt-5 mx-auto">
+						No Saved Movies
+					</Text>
+				</View>
 			) : (
 				<FlatList
 					data={data}

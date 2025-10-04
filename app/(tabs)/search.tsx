@@ -84,11 +84,10 @@ const Search = () => {
 				columnWrapperStyle={{
 					gap: 20,
 					marginTop: 20,
-					justifyContent: "center",
-					alignItems: "center",
+					width: "30%",
 				}}
 				className="mx-5 "
-				contentContainerStyle={{ paddingBottom: 100 }}
+				contentContainerStyle={{ paddingBottom: 100, justifyContent: "center" }}
 				ListEmptyComponent={
 					<>
 						{!loading && !error && searchQuery.trim() ? (
