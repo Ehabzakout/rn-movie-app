@@ -1,50 +1,83 @@
-# Welcome to your Expo app 👋
+### 🎬 Movie Explorer App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a React Native mobile application built with Expo that allows users to discover popular movies, view trending searches, and manage their saved movies — all with smooth infinite scrolling and efficient data fetching.
 
-## Get started
+✨ Features
 
-1. Install dependencies
+- 🔥 Popular Movies: Displays the most popular movies of the moment.
 
-   ```bash
-   npm install
-   ```
+- 📈 Top 5 Trending Searches: Shows the five most searched movies by users.
 
-2. Start the app
+- ♾️ Infinite Scrolling: Implements infinite query loading with React Query to improve performance when the user scrolls to the end of the list.
 
-   ```bash
-   npx expo start
-   ```
+* 💾 Saved Movies Management:
 
-In the output, you'll find options to open the app in a
+- Makes a single request on the Home screen to fetch all saved movies for the user.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Uses that cached data in the Saved page to avoid unnecessary requests.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Marks saved movies directly on the Home screen.
 
-## Get a fresh project
+* ⚡ React Query Integration:
 
-When you're ready, run:
+- Efficient caching and background updates for better UX.
+
+- Implements rollback updates for optimistic UI when saving or unsaving a movie.
+
+* 🔍 Search History & Trending:
+
+- Saves users' previous search results locally.
+
+- Identifies the most searched movies and displays them as “trending.”
+
+* 🛠️ Tech Stack
+
+- React Native
+- Expo
+- React Query
+- TypeScript
+- NativeWind (Tailwind for React Native)
+- Ionicons for icons
+
+### 🚀 Getting Started
+
+1. Clone the repository
 
 ```bash
-npm run reset-project
+git clone https://github.com/Ehabzakout/rn-movie-app.git
+cd movie-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Run the project
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
 
-## Join the community
+Scan the QR code with the Expo Go app on your phone to preview.
+```
 
-Join our community of developers creating universal apps.
+📌 Project Structure
+src/
+├─ components/ # Reusable UI components
+├─ service/ # API services & React Query hooks
+├─ assets/ # Images and icons
+├─ App # App screens (Home, Saved, Search, etc.)
+├─ constants # constant values
+├─ types # types
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- 🧠 Key Implementation Details
+
+* Home screen fetches popular movies and the saved movies for the current user.
+* Infinite queries are implemented to reduce load time and provide smooth pagination.
+* The saved movies are managed through React Query cache to avoid redundant network calls.
+* Optimistic updates and rollback ensure UI updates instantly when saving/unsaving.
+
+## 📝 Environment Variables
+
+You need to create a **`.env`** file in the root of the project to store your database configuration and other sensitive values.
