@@ -72,15 +72,15 @@ Scan the QR code with the Expo Go app on your phone to preview.
 ```
 
 📌 Project Structure
+``` bash
 src/
-
 ├─ components/ # Reusable UI components
 ├─ service/ # API services & React Query hooks
 ├─ assets/ # Images and icons
 ├─ App # App screens (Home, Saved, Search, etc.)
 ├─ constants # constant values
 ├─ types # types
-
+```
 - 🧠 Key Implementation Details
 
 * Home screen fetches popular movies and the saved movies for the current user.
